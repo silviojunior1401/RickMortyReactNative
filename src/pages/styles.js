@@ -33,6 +33,18 @@ export const Input = styled.TextInput.attrs({
   border-radius: 5px;
   padding: 0 15px;
   padding: 10px;
+  flex: 1;
+`;
+
+export const InputUser = styled.TextInput.attrs({
+  placeholderTextColor: '#999',
+})`
+  height: 40px;
+  background: #eee;
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 0 15px;
+  padding: 10px;
   margin-bottom: 10px;
 `;
 
@@ -47,8 +59,8 @@ export const Button = styled(RectButton)`
 
 export const ButtonText = styled.Text`
   color: #fff;
-  textAlign: center;
-  fontWeight: bold;
+  textalign: center;
+  fontweight: bold;
 `;
 
 export const SubmitButton = styled(RectButton)`
@@ -182,4 +194,65 @@ export const Author = styled.Text`
   font-size: 13px;
   color: #666;
   margin-top: 2px;
+`;
+
+export const Card = styled.View`
+  background-color: #3c3e44;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 3.84px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+`;
+
+export const ImageCard = styled.Image`
+  width: 150px;
+  height: 200px;
+  border-radius: 20px;
+  align-self: center;
+`;
+
+export const InfoView = styled.View`
+  flex: 1;
+  padding: 12px;
+`;
+
+export const TitleCard = styled.Text`
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+
+export const StatusView = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
+export const StatusDot = styled.View`
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin-right: 6px;
+`;
+
+export const StatusCard = styled.Text`
+  color: #ffffff;
+  font-size: 14px;
+`;
+
+export const InfoLabel = styled.Text`
+  font-size: 12px;
+  color: #9e9e9e;
+  margin-bottom: 4px;
+`;
+
+export const InfoText = styled.Text`
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 8px;
 `;

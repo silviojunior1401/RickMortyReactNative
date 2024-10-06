@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.primeiroprojeto"
+    namespace "com.rickandmorty"
     defaultConfig {
-        applicationId "com.primeiroprojeto"
+        applicationId "com.rickandmorty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

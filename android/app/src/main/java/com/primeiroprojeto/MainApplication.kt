@@ -1,4 +1,4 @@
-package com.primeiroprojeto
+package com.rickandmorty
 
 import android.app.Application
 import com.facebook.react.PackageList

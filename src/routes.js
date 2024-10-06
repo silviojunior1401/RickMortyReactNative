@@ -31,7 +31,7 @@ export default function Routes() {
           name="cards"
           component={Cards}
           options={{
-            title: 'GitHub VIEWER',
+            title: 'Cards',
             headerTitleAlign: 'center',
             headerLeft: null,
             headerStyle: {backgroundColor: '#3498db'},

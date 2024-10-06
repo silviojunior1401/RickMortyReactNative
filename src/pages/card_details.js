@@ -1,58 +1,125 @@
 import React, {Component} from 'react';
-import api from '../services/api';
 import {
-  Container,
-  Header,
-  AvatarPerfil,
-  NamePerfil,
-  BioPerfil,
-  Stars,
-  Starred,
-  OwnerAvatar,
-  Info,
-  Title,
-  Author,
-} from './styles';
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 
 export default class CardDetails extends Component {
-  state = {
-    stars: [],
-  };
-
-  async componentDidMount() {
-    const {route} = this.props;
-    const {user} = route.params;
-
-    const response = await api.get(`/users/${user.login}/starred`);
-    this.setState({stars: response.data});
-  }
-
   render() {
     const {route} = this.props;
-    const {user} = route.params;
-    const {stars} = this.state;
+    const {character} = route.params;
 
     return (
-      <Container>
-        <Header>
-          <AvatarPerfil source={{uri: user.avatar}} />
-          <NamePerfil>{user.name}</NamePerfil>
-          <BioPerfil>{user.bio}</BioPerfil>
-        </Header>
-        <Stars
-          data={stars}
-          keyExtractor={star => String(star.id)}
-          renderItem={({item}) => (
-            <Starred data={item}>
-              <OwnerAvatar source={{uri: item.owner.avatar_url}} />
-              <Info>
-                <Title>{item.name}</Title>
-                <Author>{item.owner.login}</Author>
-              </Info>
-            </Starred>
-          )}
-        />
-      </Container>
+      <ScrollView style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <View style={styles.header}>
+          <Image source={{uri: character.image}} style={styles.image} />
+          <View style={styles.overlay} />
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.name}>{character.name}</Text>
+          <View style={styles.statusContainer}>
+            <View
+              style={[
+                styles.statusDot,
+                {backgroundColor: getStatusColor(character.status)},
+              ]}
+            />
+            <Text style={styles.statusText}>{character.status}</Text>
+          </View>
+          <InfoItem label="Espécie" value={character.species} />
+          <InfoItem label="Gênero" value={character.gender} />
+          <InfoItem label="Origem" value={character.origin} />
+          <InfoItem label="Última localização" value={character.location} />
+          <InfoItem label="Primeiro episódio" value={character.first_seen} />
+        </View>
+      </ScrollView>
     );
   }
 }
+
+const InfoItem = ({label, value}) => (
+  <View style={styles.infoItem}>
+    <Text style={styles.infoLabel}>{label}:</Text>
+    <Text style={styles.infoValue}>{value}</Text>
+  </View>
+);
+
+const getStatusColor = status => {
+  switch (status.toLowerCase()) {
+    case 'alive':
+      return '#4CAF50';
+    case 'dead':
+      return '#F44336';
+    default:
+      return '#FFC107';
+  }
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#1a1a2e',
+  },
+  header: {
+    height: 300,
+    position: 'relative',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(26, 26, 46, 0.7)',
+  },
+  infoContainer: {
+    backgroundColor: '#16213e',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    marginTop: -30,
+    padding: 30,
+  },
+  name: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  statusDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 8,
+  },
+  statusText: {
+    fontSize: 18,
+    color: '#fff',
+  },
+  infoItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  infoLabel: {
+    fontSize: 16,
+    color: '#bbb',
+  },
+  infoValue: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: '500',
+  },
+});

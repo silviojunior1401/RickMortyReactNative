@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {UserContainer, UserForm, Input, Button, ButtonText} from './styles';
+import {UserContainer, UserForm, InputUser, Button, ButtonText} from './styles';
 
 export default class User extends Component {
   state = {
@@ -17,7 +17,7 @@ export default class User extends Component {
     return (
       <UserContainer>
         <UserForm>
-          <Input
+          <InputUser
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Nome"
@@ -26,7 +26,7 @@ export default class User extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <Input
+          <InputUser
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Telefone"
@@ -35,7 +35,7 @@ export default class User extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <Input
+          <InputUser
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="CPF"
@@ -44,7 +44,7 @@ export default class User extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <Input
+          <InputUser
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="E-mail"
@@ -53,7 +53,7 @@ export default class User extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <Input
+          <InputUser
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Curso"
